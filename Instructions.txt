@@ -1,4 +1,5 @@
-#Do not modify the ReadMe
+# DO NOT MODIFY THE HTML. I will deal with converting the jupyter 
+notebook to HTML after we're done with the jupyter notebook
 
 #CLONE GITHUB:
 1. git clone https://github.com/Will-Ma-02/will-ma-02.github.io
