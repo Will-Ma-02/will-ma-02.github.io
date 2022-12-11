@@ -1,0 +1,21 @@
+#Do not modify the ReadMe
+
+#CLONE GITHUB:
+1. git clone https://github.com/Will-Ma-02/will-ma-02.github.io
+
+#MAKE CHANGES
+2. git add .
+3. git commit -m "Whatever message you want"
+4. git push origin main
+
+#IF GITHUB DOESN'T RECOGNIZE YOU, USE THESE COMMANDS:
+5. git config --global user.email "your email"
+6. git config --global user.name "your username"
+
+#CLEAR CACHE
+7. git reset --soft
+
+#Repeat steps 2,3,4,7 to make more changes
+
+#GET UPDATES
+7. git pull
