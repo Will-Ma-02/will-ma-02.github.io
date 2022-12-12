@@ -14618,7 +14618,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Part-2:-Data">Part 2: Data<a class="anchor-link" href="#Part-2:-Data">&#182;</a></h1>
+<h1 id="Part-2:-Data">Part 2: Data<a class="anchor-link" href="#Part-2:-Data">&#182;</a></h1><p>We will start by importing the necesary packages.</p>
+
 </div>
 </div>
 </div>
@@ -14630,8 +14631,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 
@@ -14640,6 +14640,18 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The first thing we need to do is to read in our data. This can be done with pandas, and here is the result:</p>
+
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14988,6 +15000,1102 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 </div>
 
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This table is rather big, so we will need to do some cleaning and tidying before we can start our analysis.</p>
+<p>Firstly, we won't need all the data in this table. According to the dataset, some of the columns are not required - and thus, may contain NaN values. We don't want this as it will make our analysis more difficult than it needs to be. Out of the 29 columns, only 9 are required. That being said, we don't want to remove all of these unreqired columns, as some also contain value information we will need. The columns we will be removing are those that are not required and necesary for this analysis.</p>
+<p>The following columns will be removed:</p>
+<ul>
+<li>source_url</li>
+<li>congressional_district</li>
+<li>location_description</li>
+<li>notes</li>
+<li>participant_name</li>
+<li>sources</li>
+<li>state_house_district</li>
+<li>state_senate_district</li>
+</ul>
+<p>Here is the result:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"source_url"</span><span class="p">,</span> <span class="s2">"congressional_district"</span><span class="p">,</span> <span class="s2">"location_description"</span><span class="p">,</span> 
+<span class="s2">"notes"</span><span class="p">,</span> <span class="s2">"participant_name"</span><span class="p">,</span> <span class="s2">"sources"</span><span class="p">,</span> <span class="s2">"state_house_district"</span><span class="p">,</span> <span class="s2">"state_senate_district"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns_to_remove</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>incident_id</th>
+      <th>date</th>
+      <th>state</th>
+      <th>city_or_county</th>
+      <th>address</th>
+      <th>n_killed</th>
+      <th>n_injured</th>
+      <th>incident_url</th>
+      <th>incident_url_fields_missing</th>
+      <th>gun_stolen</th>
+      <th>...</th>
+      <th>incident_characteristics</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>n_guns_involved</th>
+      <th>participant_age</th>
+      <th>participant_age_group</th>
+      <th>participant_gender</th>
+      <th>participant_relationship</th>
+      <th>participant_status</th>
+      <th>participant_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>461105</td>
+      <td>2013-01-01</td>
+      <td>Pennsylvania</td>
+      <td>Mckeesport</td>
+      <td>1506 Versailles Avenue and Coursin Street</td>
+      <td>0</td>
+      <td>4</td>
+      <td>http://www.gunviolencearchive.org/incident/461105</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Mass Shooting (4+ vict...</td>
+      <td>40.3467</td>
+      <td>-79.8559</td>
+      <td>NaN</td>
+      <td>0::20</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||3::Male||4::Female</td>
+      <td>NaN</td>
+      <td>0::Arrested||1::Injured||2::Injured||3::Injure...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>460726</td>
+      <td>2013-01-01</td>
+      <td>California</td>
+      <td>Hawthorne</td>
+      <td>13500 block of Cerise Avenue</td>
+      <td>1</td>
+      <td>3</td>
+      <td>http://www.gunviolencearchive.org/incident/460726</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>33.9090</td>
+      <td>-118.3330</td>
+      <td>NaN</td>
+      <td>0::20</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male</td>
+      <td>NaN</td>
+      <td>0::Killed||1::Injured||2::Injured||3::Injured</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>478855</td>
+      <td>2013-01-01</td>
+      <td>Ohio</td>
+      <td>Lorain</td>
+      <td>1776 East 28th Street</td>
+      <td>1</td>
+      <td>3</td>
+      <td>http://www.gunviolencearchive.org/incident/478855</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>41.4455</td>
+      <td>-82.1377</td>
+      <td>2.0</td>
+      <td>0::25||1::31||2::33||3::34||4::33</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||2::Male||3::Male||4::Male</td>
+      <td>NaN</td>
+      <td>0::Injured, Unharmed, Arrested||1::Unharmed, A...</td>
+      <td>0::Subject-Suspect||1::Subject-Suspect||2::Vic...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>478925</td>
+      <td>2013-01-05</td>
+      <td>Colorado</td>
+      <td>Aurora</td>
+      <td>16000 block of East Ithaca Place</td>
+      <td>4</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/478925</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Off...</td>
+      <td>39.6518</td>
+      <td>-104.8020</td>
+      <td>NaN</td>
+      <td>0::29||1::33||2::56||3::33</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Female||1::Male||2::Male||3::Male</td>
+      <td>NaN</td>
+      <td>0::Killed||1::Killed||2::Killed||3::Killed</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Subject-Su...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>478959</td>
+      <td>2013-01-07</td>
+      <td>North Carolina</td>
+      <td>Greensboro</td>
+      <td>307 Mourning Dove Terrace</td>
+      <td>2</td>
+      <td>2</td>
+      <td>http://www.gunviolencearchive.org/incident/478959</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>36.1140</td>
+      <td>-79.9569</td>
+      <td>2.0</td>
+      <td>0::18||1::46||2::14||3::47</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Teen 12-17||3::...</td>
+      <td>0::Female||1::Male||2::Male||3::Female</td>
+      <td>3::Family</td>
+      <td>0::Injured||1::Injured||2::Killed||3::Killed</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Subject-Su...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>239672</th>
+      <td>1083142</td>
+      <td>2018-03-31</td>
+      <td>Louisiana</td>
+      <td>Rayne</td>
+      <td>North Riceland Road and Highway 90</td>
+      <td>0</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shots Fired - No Injuries</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>0::25</td>
+      <td>0::Adult 18+</td>
+      <td>0::Female</td>
+      <td>NaN</td>
+      <td>0::Unharmed, Arrested</td>
+      <td>0::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239673</th>
+      <td>1083139</td>
+      <td>2018-03-31</td>
+      <td>Louisiana</td>
+      <td>Natchitoches</td>
+      <td>247 Keyser Ave</td>
+      <td>1</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Ins...</td>
+      <td>31.7537</td>
+      <td>-93.0836</td>
+      <td>1.0</td>
+      <td>1::21</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Male||1::Male</td>
+      <td>NaN</td>
+      <td>0::Killed||1::Unharmed, Arrested</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239674</th>
+      <td>1083151</td>
+      <td>2018-03-31</td>
+      <td>Louisiana</td>
+      <td>Gretna</td>
+      <td>1300 block of Cook Street</td>
+      <td>0</td>
+      <td>1</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured</td>
+      <td>29.9239</td>
+      <td>-90.0442</td>
+      <td>1.0</td>
+      <td>0::21</td>
+      <td>0::Adult 18+</td>
+      <td>0::Male</td>
+      <td>NaN</td>
+      <td>0::Injured</td>
+      <td>0::Victim</td>
+    </tr>
+    <tr>
+      <th>239675</th>
+      <td>1082514</td>
+      <td>2018-03-31</td>
+      <td>Texas</td>
+      <td>Houston</td>
+      <td>12630 Ashford Point Dr</td>
+      <td>1</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)</td>
+      <td>29.7201</td>
+      <td>-95.6110</td>
+      <td>1.0</td>
+      <td>0::42</td>
+      <td>0::Adult 18+</td>
+      <td>0::Male</td>
+      <td>NaN</td>
+      <td>0::Killed</td>
+      <td>0::Victim</td>
+    </tr>
+    <tr>
+      <th>239676</th>
+      <td>1081940</td>
+      <td>2018-03-31</td>
+      <td>Maine</td>
+      <td>Norridgewock</td>
+      <td>434 Skowhegan Rd</td>
+      <td>2</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Sui...</td>
+      <td>44.7293</td>
+      <td>-69.7691</td>
+      <td>2.0</td>
+      <td>0::58||1::62</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Significant others - current or former</td>
+      <td>0::Killed||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+  </tbody>
+</table>
+<p>239677 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Secondly, we need to deal with the NaN values. The solution we came up here with is simple - just drop the row if it contains any NaN values.</p>
+<p>Here is the result:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">data</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>incident_id</th>
+      <th>date</th>
+      <th>state</th>
+      <th>city_or_county</th>
+      <th>address</th>
+      <th>n_killed</th>
+      <th>n_injured</th>
+      <th>incident_url</th>
+      <th>incident_url_fields_missing</th>
+      <th>gun_stolen</th>
+      <th>...</th>
+      <th>incident_characteristics</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>n_guns_involved</th>
+      <th>participant_age</th>
+      <th>participant_age_group</th>
+      <th>participant_gender</th>
+      <th>participant_relationship</th>
+      <th>participant_status</th>
+      <th>participant_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>478959</td>
+      <td>2013-01-07</td>
+      <td>North Carolina</td>
+      <td>Greensboro</td>
+      <td>307 Mourning Dove Terrace</td>
+      <td>2</td>
+      <td>2</td>
+      <td>http://www.gunviolencearchive.org/incident/478959</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>36.1140</td>
+      <td>-79.9569</td>
+      <td>2.0</td>
+      <td>0::18||1::46||2::14||3::47</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Teen 12-17||3::...</td>
+      <td>0::Female||1::Male||2::Male||3::Female</td>
+      <td>3::Family</td>
+      <td>0::Injured||1::Injured||2::Killed||3::Killed</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Subject-Su...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>479363</td>
+      <td>2013-01-19</td>
+      <td>New Mexico</td>
+      <td>Albuquerque</td>
+      <td>2806 Long Lane</td>
+      <td>5</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/479363</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Mas...</td>
+      <td>34.9791</td>
+      <td>-106.7160</td>
+      <td>2.0</td>
+      <td>0::51||1::40||2::9||3::5||4::2||5::15</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Child 0-11||3::...</td>
+      <td>0::Male||1::Female||2::Male||3::Female||4::Fem...</td>
+      <td>5::Family</td>
+      <td>0::Killed||1::Killed||2::Killed||3::Killed||4:...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>479580</td>
+      <td>2013-02-03</td>
+      <td>California</td>
+      <td>Yuba (county)</td>
+      <td>5800 block of Poplar Avenue</td>
+      <td>1</td>
+      <td>3</td>
+      <td>http://www.gunviolencearchive.org/incident/479580</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>39.1236</td>
+      <td>-121.5830</td>
+      <td>1.0</td>
+      <td>0::20||4::25||5::18||6::19</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||2::Female||4::Male||5::Male|...</td>
+      <td>4::Drive by - Random victims||5::Drive by - Ra...</td>
+      <td>0::Killed||1::Injured||2::Injured||3::Injured|...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>482856</td>
+      <td>2013-03-13</td>
+      <td>New York</td>
+      <td>Mohawk</td>
+      <td>17 W Main St</td>
+      <td>6</td>
+      <td>2</td>
+      <td>http://www.gunviolencearchive.org/incident/482856</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>43.0110</td>
+      <td>-75.0058</td>
+      <td>1.0</td>
+      <td>0::68||1::57||2::66||3::67||4::62||5::51||6::2...</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||2::Male||4::Male||5::Male||6...</td>
+      <td>7::Aquaintance</td>
+      <td>0::Killed||1::Killed||2::Injured||3::Injured||...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>485811</td>
+      <td>2013-04-24</td>
+      <td>Illinois</td>
+      <td>Manchester</td>
+      <td>East Street</td>
+      <td>6</td>
+      <td>1</td>
+      <td>http://www.gunviolencearchive.org/incident/485811</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>39.5417</td>
+      <td>-90.3301</td>
+      <td>2.0</td>
+      <td>0::64||1::22||2::29||3::5||4::1</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::C...</td>
+      <td>0::Female||1::Female||2::Male||3::Male||4::Mal...</td>
+      <td>6::Significant others - current or former</td>
+      <td>0::Killed||1::Killed||2::Killed||3::Killed||4:...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>239553</th>
+      <td>1083224</td>
+      <td>2018-03-31</td>
+      <td>Alabama</td>
+      <td>Eclectic</td>
+      <td>340 Boswell Road</td>
+      <td>2</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Sui...</td>
+      <td>32.7015</td>
+      <td>-86.0871</td>
+      <td>1.0</td>
+      <td>0::68||1::74</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Male||1::Male</td>
+      <td>1::Friends</td>
+      <td>0::Killed||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239567</th>
+      <td>1081772</td>
+      <td>2018-03-31</td>
+      <td>Maryland</td>
+      <td>Crisfield</td>
+      <td>26440 Silver Ln</td>
+      <td>1</td>
+      <td>1</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>37.9962</td>
+      <td>-75.8392</td>
+      <td>1.0</td>
+      <td>0::44||1::57</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Significant others - current or former</td>
+      <td>0::Injured||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239568</th>
+      <td>1083136</td>
+      <td>2018-03-31</td>
+      <td>California</td>
+      <td>Santa Cruz</td>
+      <td>600 block of Riverside Ave</td>
+      <td>0</td>
+      <td>1</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Wounded/Injured||Gang involvement</td>
+      <td>36.9702</td>
+      <td>-122.0200</td>
+      <td>1.0</td>
+      <td>0::26</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Male||1::Male</td>
+      <td>1::Gang vs Gang</td>
+      <td>0::Injured||1::Unharmed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239617</th>
+      <td>1081647</td>
+      <td>2018-03-31</td>
+      <td>Florida</td>
+      <td>Miami</td>
+      <td>NW 65th St and NW 13th Ct</td>
+      <td>1</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Chi...</td>
+      <td>25.8343</td>
+      <td>-80.2195</td>
+      <td>1.0</td>
+      <td>0::4||1::24</td>
+      <td>0::Child 0-11||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Family</td>
+      <td>0::Killed||1::Unharmed, Arrested</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239676</th>
+      <td>1081940</td>
+      <td>2018-03-31</td>
+      <td>Maine</td>
+      <td>Norridgewock</td>
+      <td>434 Skowhegan Rd</td>
+      <td>2</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>False</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>...</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Sui...</td>
+      <td>44.7293</td>
+      <td>-69.7691</td>
+      <td>2.0</td>
+      <td>0::58||1::62</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Significant others - current or former</td>
+      <td>0::Killed||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+  </tbody>
+</table>
+<p>8207 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Lastly, we need to remove columns that were well-formed but are either unncecsary or contain sensitive information, like an address. We want this analysis to remain as anonymous as possible, and we want to respect those who were affected by these incidents.</p>
+<p>Here is the final result, and the data we will be using in the rest of the analysis:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"address"</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"incident_url"</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"incident_url_fields_missing"</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>incident_id</th>
+      <th>date</th>
+      <th>state</th>
+      <th>city_or_county</th>
+      <th>n_killed</th>
+      <th>n_injured</th>
+      <th>gun_stolen</th>
+      <th>gun_type</th>
+      <th>incident_characteristics</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>n_guns_involved</th>
+      <th>participant_age</th>
+      <th>participant_age_group</th>
+      <th>participant_gender</th>
+      <th>participant_relationship</th>
+      <th>participant_status</th>
+      <th>participant_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>478959</td>
+      <td>2013-01-07</td>
+      <td>North Carolina</td>
+      <td>Greensboro</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>0::Handgun||1::Handgun</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>36.1140</td>
+      <td>-79.9569</td>
+      <td>2.0</td>
+      <td>0::18||1::46||2::14||3::47</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Teen 12-17||3::...</td>
+      <td>0::Female||1::Male||2::Male||3::Female</td>
+      <td>3::Family</td>
+      <td>0::Injured||1::Injured||2::Killed||3::Killed</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Subject-Su...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>479363</td>
+      <td>2013-01-19</td>
+      <td>New Mexico</td>
+      <td>Albuquerque</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>0::22 LR||1::223 Rem [AR-15]</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Mas...</td>
+      <td>34.9791</td>
+      <td>-106.7160</td>
+      <td>2.0</td>
+      <td>0::51||1::40||2::9||3::5||4::2||5::15</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Child 0-11||3::...</td>
+      <td>0::Male||1::Female||2::Male||3::Female||4::Fem...</td>
+      <td>5::Family</td>
+      <td>0::Killed||1::Killed||2::Killed||3::Killed||4:...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>479580</td>
+      <td>2013-02-03</td>
+      <td>California</td>
+      <td>Yuba (county)</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0::Unknown</td>
+      <td>0::9mm</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>39.1236</td>
+      <td>-121.5830</td>
+      <td>1.0</td>
+      <td>0::20||4::25||5::18||6::19</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||2::Female||4::Male||5::Male|...</td>
+      <td>4::Drive by - Random victims||5::Drive by - Ra...</td>
+      <td>0::Killed||1::Injured||2::Injured||3::Injured|...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>482856</td>
+      <td>2013-03-13</td>
+      <td>New York</td>
+      <td>Mohawk</td>
+      <td>6</td>
+      <td>2</td>
+      <td>0::Unknown</td>
+      <td>0::Shotgun</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>43.0110</td>
+      <td>-75.0058</td>
+      <td>1.0</td>
+      <td>0::68||1::57||2::66||3::67||4::62||5::51||6::2...</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||2::Male||4::Male||5::Male||6...</td>
+      <td>7::Aquaintance</td>
+      <td>0::Killed||1::Killed||2::Injured||3::Injured||...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>485811</td>
+      <td>2013-04-24</td>
+      <td>Illinois</td>
+      <td>Manchester</td>
+      <td>6</td>
+      <td>1</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>39.5417</td>
+      <td>-90.3301</td>
+      <td>2.0</td>
+      <td>0::64||1::22||2::29||3::5||4::1</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::C...</td>
+      <td>0::Female||1::Female||2::Male||3::Male||4::Mal...</td>
+      <td>6::Significant others - current or former</td>
+      <td>0::Killed||1::Killed||2::Killed||3::Killed||4:...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>239553</th>
+      <td>1083224</td>
+      <td>2018-03-31</td>
+      <td>Alabama</td>
+      <td>Eclectic</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0::Unknown</td>
+      <td>0::Unknown</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Sui...</td>
+      <td>32.7015</td>
+      <td>-86.0871</td>
+      <td>1.0</td>
+      <td>0::68||1::74</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Male||1::Male</td>
+      <td>1::Friends</td>
+      <td>0::Killed||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239567</th>
+      <td>1081772</td>
+      <td>2018-03-31</td>
+      <td>Maryland</td>
+      <td>Crisfield</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0::Unknown</td>
+      <td>0::Handgun</td>
+      <td>Shot - Wounded/Injured||Shot - Dead (murder, a...</td>
+      <td>37.9962</td>
+      <td>-75.8392</td>
+      <td>1.0</td>
+      <td>0::44||1::57</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Significant others - current or former</td>
+      <td>0::Injured||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239568</th>
+      <td>1083136</td>
+      <td>2018-03-31</td>
+      <td>California</td>
+      <td>Santa Cruz</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0::Unknown</td>
+      <td>0::Unknown</td>
+      <td>Shot - Wounded/Injured||Gang involvement</td>
+      <td>36.9702</td>
+      <td>-122.0200</td>
+      <td>1.0</td>
+      <td>0::26</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Male||1::Male</td>
+      <td>1::Gang vs Gang</td>
+      <td>0::Injured||1::Unharmed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239617</th>
+      <td>1081647</td>
+      <td>2018-03-31</td>
+      <td>Florida</td>
+      <td>Miami</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0::Unknown</td>
+      <td>0::Unknown</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Chi...</td>
+      <td>25.8343</td>
+      <td>-80.2195</td>
+      <td>1.0</td>
+      <td>0::4||1::24</td>
+      <td>0::Child 0-11||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Family</td>
+      <td>0::Killed||1::Unharmed, Arrested</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+    <tr>
+      <th>239676</th>
+      <td>1081940</td>
+      <td>2018-03-31</td>
+      <td>Maine</td>
+      <td>Norridgewock</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0::Unknown||1::Unknown</td>
+      <td>0::Handgun||1::Shotgun</td>
+      <td>Shot - Dead (murder, accidental, suicide)||Sui...</td>
+      <td>44.7293</td>
+      <td>-69.7691</td>
+      <td>2.0</td>
+      <td>0::58||1::62</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>1::Significant others - current or former</td>
+      <td>0::Killed||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+    </tr>
+  </tbody>
+</table>
+<p>8207 rows × 18 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now that our data has been cleaned up, it's time to explain what we are looking at. This dataset tracked every since recorded incident of gun violence between early 2013 and early 2018 in the United States. It contains all the critical information we need to understand each incident that occured, such as where and when it happened, who was involved, and what the outcome was. Below is a summary of each column and what it tells us about the incident.</p>
+<ul>
+<li>date: when the incident occured</li>
+<li>state: what state the incident occured in</li>
+<li>city_or_county: what city or county the incident occured in</li>
+<li>n_killed: how many people were killed in the incident</li>
+<li>n_injured: how many people were injured in the incident</li>
+<li>gun_stolen: whether or not the gun/guns used were stolen</li>
+<li>gun_type: what type of gun/guns were used</li>
+<li>incident_characteristics: specific details about the incident</li>
+<li>latitude: geographic latitude of the incident</li>
+<li>longitude: geographic longitude of the incident</li>
+<li>n_guns_involved: how many guns involved in the incident</li>
+<li>participant_age: a breakdown of each participant's age</li>
+<li>participant_age_group: a breakdown of each participant's age group</li>
+<li>participant_gender: a breakdown of each participant's gender</li>
+<li>participant_relationship: a breakdown of each participant's relationship to other participants</li>
+<li>participant_status: a breakdown of the outcome of each participant</li>
+<li>participant_type: a breakdown of each participant's role in the incident</li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
 </body>
 
