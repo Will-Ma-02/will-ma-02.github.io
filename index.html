@@ -14604,20 +14604,52 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1>
+<h1 id="Part-1:-Introduction">Part 1: Introduction<a class="anchor-link" href="#Part-1:-Introduction">&#182;</a></h1><p>Gun violence has become a significant problem in America today. We are constantly reminded by news reports and social media that gun violence is a part of out lives - as a result, our lives are being disrupted by this threat. Schools are enforcing shooting drills, products like bulletproof vests are becoming ever more common, and our politics are being divided over what the right thing to do is.</p>
+<p>In 2020, gun violence was the most common cause of death among people younger than 19. Between 1968 and 2011, an estimated 1.4 million Americans died from gun violence. The gun-related homicide rate in the United States is 25 times higher than in other developed countries. Because of these statistics, it makes sense that the general public be informed about this issue.</p>
+<p>In this tutorial, we will do an in-depth analysis of the history, causes and effects of gun violence. The data we will be using can be found &lt;a id = &quot;https://github.com/jamesqo/gun-violence-data&quot;here&gt;</a>. The ultimate goal is to understand the factors that contribute the most to gun violence.</p>
+
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Part-2:-Data">Part 2: Data<a class="anchor-link" href="#Part-2:-Data">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Testing code</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Testing Code"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"/Users/mr8bit/Documents/Other/GitHub/Academic Repositories/CMSC320 Final Project/stage3.csv"</span><span class="p">)</span>
+<span class="n">data</span>
 </pre></div>
 
      </div>
@@ -14631,15 +14663,325 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Testing Code
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>incident_id</th>
+      <th>date</th>
+      <th>state</th>
+      <th>city_or_county</th>
+      <th>address</th>
+      <th>n_killed</th>
+      <th>n_injured</th>
+      <th>incident_url</th>
+      <th>source_url</th>
+      <th>incident_url_fields_missing</th>
+      <th>...</th>
+      <th>participant_age</th>
+      <th>participant_age_group</th>
+      <th>participant_gender</th>
+      <th>participant_name</th>
+      <th>participant_relationship</th>
+      <th>participant_status</th>
+      <th>participant_type</th>
+      <th>sources</th>
+      <th>state_house_district</th>
+      <th>state_senate_district</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>461105</td>
+      <td>2013-01-01</td>
+      <td>Pennsylvania</td>
+      <td>Mckeesport</td>
+      <td>1506 Versailles Avenue and Coursin Street</td>
+      <td>0</td>
+      <td>4</td>
+      <td>http://www.gunviolencearchive.org/incident/461105</td>
+      <td>http://www.post-gazette.com/local/south/2013/0...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::20</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||3::Male||4::Female</td>
+      <td>0::Julian Sims</td>
+      <td>NaN</td>
+      <td>0::Arrested||1::Injured||2::Injured||3::Injure...</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+      <td>http://pittsburgh.cbslocal.com/2013/01/01/4-pe...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>460726</td>
+      <td>2013-01-01</td>
+      <td>California</td>
+      <td>Hawthorne</td>
+      <td>13500 block of Cerise Avenue</td>
+      <td>1</td>
+      <td>3</td>
+      <td>http://www.gunviolencearchive.org/incident/460726</td>
+      <td>http://www.dailybulletin.com/article/zz/201301...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::20</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male</td>
+      <td>0::Bernard Gillis</td>
+      <td>NaN</td>
+      <td>0::Killed||1::Injured||2::Injured||3::Injured</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Victim||4:...</td>
+      <td>http://losangeles.cbslocal.com/2013/01/01/man-...</td>
+      <td>62.0</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>478855</td>
+      <td>2013-01-01</td>
+      <td>Ohio</td>
+      <td>Lorain</td>
+      <td>1776 East 28th Street</td>
+      <td>1</td>
+      <td>3</td>
+      <td>http://www.gunviolencearchive.org/incident/478855</td>
+      <td>http://chronicle.northcoastnow.com/2013/02/14/...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::25||1::31||2::33||3::34||4::33</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Male||1::Male||2::Male||3::Male||4::Male</td>
+      <td>0::Damien Bell||1::Desmen Noble||2::Herman Sea...</td>
+      <td>NaN</td>
+      <td>0::Injured, Unharmed, Arrested||1::Unharmed, A...</td>
+      <td>0::Subject-Suspect||1::Subject-Suspect||2::Vic...</td>
+      <td>http://www.morningjournal.com/general-news/201...</td>
+      <td>56.0</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>478925</td>
+      <td>2013-01-05</td>
+      <td>Colorado</td>
+      <td>Aurora</td>
+      <td>16000 block of East Ithaca Place</td>
+      <td>4</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/478925</td>
+      <td>http://www.dailydemocrat.com/20130106/aurora-s...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::29||1::33||2::56||3::33</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A...</td>
+      <td>0::Female||1::Male||2::Male||3::Male</td>
+      <td>0::Stacie Philbrook||1::Christopher Ratliffe||...</td>
+      <td>NaN</td>
+      <td>0::Killed||1::Killed||2::Killed||3::Killed</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Subject-Su...</td>
+      <td>http://denver.cbslocal.com/2013/01/06/officer-...</td>
+      <td>40.0</td>
+      <td>28.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>478959</td>
+      <td>2013-01-07</td>
+      <td>North Carolina</td>
+      <td>Greensboro</td>
+      <td>307 Mourning Dove Terrace</td>
+      <td>2</td>
+      <td>2</td>
+      <td>http://www.gunviolencearchive.org/incident/478959</td>
+      <td>http://www.journalnow.com/news/local/article_d...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::18||1::46||2::14||3::47</td>
+      <td>0::Adult 18+||1::Adult 18+||2::Teen 12-17||3::...</td>
+      <td>0::Female||1::Male||2::Male||3::Female</td>
+      <td>0::Danielle Imani Jameison||1::Maurice Eugene ...</td>
+      <td>3::Family</td>
+      <td>0::Injured||1::Injured||2::Killed||3::Killed</td>
+      <td>0::Victim||1::Victim||2::Victim||3::Subject-Su...</td>
+      <td>http://myfox8.com/2013/01/08/update-mother-sho...</td>
+      <td>62.0</td>
+      <td>27.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>239672</th>
+      <td>1083142</td>
+      <td>2018-03-31</td>
+      <td>Louisiana</td>
+      <td>Rayne</td>
+      <td>North Riceland Road and Highway 90</td>
+      <td>0</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>http://www.klfy.com/news/local/rayne-woman-cha...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::25</td>
+      <td>0::Adult 18+</td>
+      <td>0::Female</td>
+      <td>0::Jhkeya Tezeno</td>
+      <td>NaN</td>
+      <td>0::Unharmed, Arrested</td>
+      <td>0::Subject-Suspect</td>
+      <td>http://www.klfy.com/news/local/rayne-woman-cha...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>239673</th>
+      <td>1083139</td>
+      <td>2018-03-31</td>
+      <td>Louisiana</td>
+      <td>Natchitoches</td>
+      <td>247 Keyser Ave</td>
+      <td>1</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>http://www.ksla.com/story/37854648/man-wanted-...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>1::21</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Male||1::Male</td>
+      <td>0::Jamal Haskett||1::Jaquarious Tyjuan Ardison</td>
+      <td>NaN</td>
+      <td>0::Killed||1::Unharmed, Arrested</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+      <td>http://www.ksla.com/story/37854648/man-wanted-...</td>
+      <td>23.0</td>
+      <td>31.0</td>
+    </tr>
+    <tr>
+      <th>239674</th>
+      <td>1083151</td>
+      <td>2018-03-31</td>
+      <td>Louisiana</td>
+      <td>Gretna</td>
+      <td>1300 block of Cook Street</td>
+      <td>0</td>
+      <td>1</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>http://www.nola.com/crime/index.ssf/2018/04/sh...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::21</td>
+      <td>0::Adult 18+</td>
+      <td>0::Male</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0::Injured</td>
+      <td>0::Victim</td>
+      <td>http://www.nola.com/crime/index.ssf/2018/04/sh...</td>
+      <td>85.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>239675</th>
+      <td>1082514</td>
+      <td>2018-03-31</td>
+      <td>Texas</td>
+      <td>Houston</td>
+      <td>12630 Ashford Point Dr</td>
+      <td>1</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>https://www.chron.com/news/houston-texas/houst...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::42</td>
+      <td>0::Adult 18+</td>
+      <td>0::Male</td>
+      <td>0::Leroy Ellis</td>
+      <td>NaN</td>
+      <td>0::Killed</td>
+      <td>0::Victim</td>
+      <td>http://www.khou.com/article/news/hpd-investiga...</td>
+      <td>149.0</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>239676</th>
+      <td>1081940</td>
+      <td>2018-03-31</td>
+      <td>Maine</td>
+      <td>Norridgewock</td>
+      <td>434 Skowhegan Rd</td>
+      <td>2</td>
+      <td>0</td>
+      <td>http://www.gunviolencearchive.org/incident/108...</td>
+      <td>https://www.centralmaine.com/2018/03/31/police...</td>
+      <td>False</td>
+      <td>...</td>
+      <td>0::58||1::62</td>
+      <td>0::Adult 18+||1::Adult 18+</td>
+      <td>0::Female||1::Male</td>
+      <td>0::Marie Lancaster Hale||1::William Hale</td>
+      <td>1::Significant others - current or former</td>
+      <td>0::Killed||1::Killed</td>
+      <td>0::Victim||1::Subject-Suspect</td>
+      <td>https://www.centralmaine.com/2018/03/31/police...</td>
+      <td>111.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>239677 rows × 29 columns</p>
 </div>
+</div>
+
 </div>
 
 </div>
